@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Registration</title>
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
+            padding: 10px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 96.7%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .logo {
+            height: 35px;
+            width: 160px;
+            margin-left: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://i.pinimg.com/1200x/b7/71/fc/b771fcf8cc1997ee4a9e64a6bc362132.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120vh;
+            color: #333;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 550px;
+            padding: 50px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            margin-block-start: 1px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .nav a {
+            margin-right: 20px;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .gender-options {
+            grid-column: span 2;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 2px;
+        }
+
+        .gender-options label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            grid-column: span 2;
+            width: 100%;
+            padding: 12px;
+            font-size: 17px;
+            text-align: center;
+            color: #fff;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            color: #2575fc;
+            text-decoration: none;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 17px;
+            height: 17px;
+            border: 2px solid white;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 5px;
+           
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 20px;
+                width: 96.5%;
+            }
+
+            .header .logo {
+                height: 30px;
+            }
+
+            .nav a {
+                font-size: 14px;
+            }
+
+            .form-container {
+                width: 75%;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="https://assets.onecompiler.app/42zhuec4k/436qwru22/freepik--20250121145715BhEV.png" alt="Logo"
+            class="logo">
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="register.html">Register</a>
+            <a href="login.html">Login</a>
+            <a href="searchticket.html">PNR Status</a>
+            <a href="search.html">Ticket Booking</a>
+        </nav>
+    </header>
+
+    <div class="form-container">
+        <h1>Registration</h1>
+        <form th:action="@{/register}" th:object="${user}" method="post" onsubmit="return startLoading(event)">
+            <div class="form-grid">
+                <div>
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" th:field="*{name}" placeholder="Enter your name"
+                        required />
+                </div>
+
+                <div>
+                    <label for="email">Email Id</label>
+                    <input type="email" id="email" name="email" th:field="*{email}" placeholder="Enter your email id"
+                        required />
+                </div>
+
+                <div>
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" name="contact_number" th:field="*{contact_number}"
+                        placeholder="Enter your number" pattern="\d{10}" title="Enter a valid 10-digit phone number"
+                        required />
+                </div>
+
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" th:field="*{password}"
+                        placeholder="Enter your password" required />
+                </div>
+
+                <div>
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" th:field="*{age}" min="18" placeholder="Enter your age"
+                        required />
+                </div>
+
+
+                <div>
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" th:field="*{address}" rows="2" cols="30"
+                        placeholder="Enter your address" required></textarea>
+                </div>
+            </div>
+            <label>Gender:</label>
+            <div class="gender-options">
+
+                <label><input type="radio" id="male" name="gender" th:field="*{gender}" value="Male" required>
+                    Male</label>
+                <label><input type="radio" id="female" name="gender" th:field="*{gender}" value="Female" required>
+                    Female</label>
+                <label><input type="radio" id="prefer_not" name="gender" th:field="*{gender}" value="Prefer not to say"
+                        required> Prefer not to say</label>
+            </div>
+
+            <button type="submit" id="loadButton">Register</button>
+
+            <div class="form-footer">
+                <p>Already have an account? <a href="login.html"> LogIn </a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function startLoading(event) {
+            event.preventDefault();
+            let button = document.getElementById("loadButton");
+            button.innerHTML = 'Loading <span class="spinner"></span>';
+
+            setTimeout(() => {
+                alert("Registration Successful");
+                event.target.submit();
+            }, 2000);
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
+            padding: 10px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 96.7%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+		.header .logo {
+		   height: 35px;
+		   width: 160px;
+		   margin-left: 10px;
+		   
+		}
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://i.pinimg.com/1200x/b7/71/fc/b771fcf8cc1997ee4a9e64a6bc362132.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            padding-top: 10px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            height: 120vh;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+
+            color: rgb(11, 11, 11);
+        }
+
+        .nav a {
+            margin-right: 20px;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .form-container {
+            background-color: transparent;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            padding: 40px;
+            margin-bottom: 210px;
+            margin-left: 20%;
+
+        }
+
+        .form-container button {
+            width: 140px;
+            padding: 16px;
+            font-size: 18px;
+            color: #fff;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+            transform: scale(1.15);
+
+        }
+
+        .form-grid {
+            margin-left: 15%;
+            display: flex;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                width: 100%;
+                padding: 20px;
+            }
+            .form-container {
+            background-color: transparent;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            padding: 40px;
+            margin-bottom: 210px;
+            margin-left: 5px;
+
+        }
+        .form-container button {
+            width: 140px;
+            padding: 16px;
+            font-size: 15px;
+            color: #fff;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+            transform: scale(1.15);
+
+        }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="https://assets.onecompiler.app/42zhuec4k/436qwru22/freepik--20250121145715BhEV.png" alt="Logo" class="logo">
+        <nav class="nav">
+            <a href="home.html">Home</a>
+			<a href="dashboard.html">Dashboard</a>
+            <a href="ticketsearch.html">PNR Status</a>
+            <a href="searchtrain.html">Ticket Booking</a>
+            <a href="profile.html">Profile</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </header>
+
+
+    <div class="form-container">
+        <h1>Welcome to the Railway Ticket Booking Site</h1>
+        <form>
+            <div class="form-grid">
+                <button type="button" onclick="bookTicket()">Book Ticket</button>
+                <button type="button" onclick="checkPNRStatus()">PNR Status</button>
+                <button type="button" onclick="searchTrain()">Search Train</button>
+            </div>
+        </form>
+       
+
+    </div>
+
+    <script>
+        function bookTicket() {
+            window.location.href = 'searchtrain.html';
+        }
+
+        function checkPNRStatus() {
+            window.location.href = 'ticketsearch.html'; 
+        }
+
+        function searchTrain() {
+            window.location.href = 'searchtrain.html'; 
+        }
+    </script>
+</body>
+
+</html>

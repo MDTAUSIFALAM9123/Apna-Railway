@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dashboard</title>
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
+            padding: 10px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 96.7%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+		.header .logo {
+		   height: 35px;
+		   width: 160px;
+		   margin-left: 10px;
+		   
+		}
+
+        /* Body Style */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://i.pinimg.com/1200x/b7/71/fc/b771fcf8cc1997ee4a9e64a6bc362132.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120vh;
+            color: #333;
+        }
+
+        .options-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            padding: 48px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+
+        .options-container a {
+            font-size: 19px;
+            padding: 14px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            text-align: center;
+            margin-bottom: 12px;
+            display: grid;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .options-container a:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+
+        h1 {
+            margin-top: 5px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .nav a {
+            margin-right: 20px;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 20px;
+                width: 96.5%;
+            }
+
+            .header .logo {
+                height: 30px;
+            }
+
+            .nav a {
+                margin-right: 20px;
+                color: black;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 15px
+            }
+
+            .options-container {
+                width: 70%;
+                padding: 40px;
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="https://assets.onecompiler.app/42zhuec4k/436qwru22/freepik--20250121145715BhEV.png" alt="Logo" class="logo">
+        <nav class="nav">
+            <a href="home.html">Home</a>
+			<a href="dashboard.html">Dashboard</a>
+            <a href="ticketsearch.html">PNR Status</a>
+            <a href="searchtrain.html">Ticket Booking</a>
+			<a href="index.html">Logout</a>
+        </nav>
+    </header>
+
+    <div class="options-container">
+        <h1>Welcome to the Dashboard</h1>
+        <form>
+			<a href="searchtrain.html">Ticket Booking</a>
+            <a href="profile.html">View Profile</a>
+            <a href="searchticket.html">Search Ticket</a>
+            <a href="#">Change Password</a>
+            <a href="index.html">Logout</a>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

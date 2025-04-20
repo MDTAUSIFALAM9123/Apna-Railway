@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Ticket</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .ticket-container {
+            max-width: 700px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-container h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .ticket-container p {
+            text-align: left;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .ticket-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .ticket-details .left-column,
+        .ticket-details .right-column {
+            width: 40%;
+        }
+
+        .ticket-details p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .passenger-details {
+            margin-top: 20px;
+        }
+
+        .passenger-details h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            transform: scale(1.06);        
+        }
+
+        @media (max-width: 768px) {
+
+            .ticket-container {
+                width: 90%;
+                padding: 20px;
+            }
+
+
+        }
+
+        @media print {
+
+            .ticket-container {
+                box-shadow: none;
+                border: none;
+            }
+            .buttons {
+          display: none;
+        }
+
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="ticket-container">
+        <h2>Congratulations! Your ticket has been successfully booked.</h2>
+        <p>Please print the ERS and carry it along with a relevant photo ID while traveling.</p>
+
+        <div class="ticket-details">
+            <div class="left-column">
+                <p><strong>Transaction ID:</strong> 2000001</p>
+                <p><strong>From:</strong> <span th:text="${ticket.sourceStation}"></span></p>
+                <p><strong>To:</strong> <span th:text="${ticket.destinationStation}"></span></p>
+                <p><strong>Date of Booking:</strong> 2025-01-24</p>
+                <p><strong>Date of Journey:</strong> <span th:text="${ticket.travelDate}"></span></p>
+                <p><strong>Total Fare:</strong> Rs. 2000</p>
+            </div>
+            <div class="right-column">
+                <p><strong>PNR No:</strong> <span th:text="${ticket.pnr}"></span></p>
+                <p><strong>Train No.:</strong> <span th:text="${ticket.trainNo}"></span></p>
+                <p><strong>Train Name:</strong> <span th:text="${ticket.trainName}"></span></p>
+                <p><strong>Class:</strong> <span th:text="${ticket.classes}"></span></p>
+                <p><strong>Boarding At:</strong> <span th:text="${ticket.destinationStation}"></span></p>
+                <p><strong>Quota:</strong> <span th:text="${ticket.quota}"></span></p>
+            </div>
+        </div>
+
+        <div class="passenger-details">
+            <h3>Details of Passengers</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sl. No.</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Meal</th>
+                        <th>Status</th>
+                        <th>Coach</th>
+                        <th>Seat / Berth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><span th:text="${ticket.name}"></span></td>
+                        <td><span th:text="${ticket.age}"></td>
+                        <td><span th:text="${ticket.gender}"></td>
+                        <td>Veg</td>
+                        <td>CNF</td>
+                        <td>B3</td>
+                        <td>S<span th:text="${ticket.seat_no}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttons">
+            <button onclick="home()">Back To Home </button>
+            <button onclick="printPDF()">Print ERS (To PDF)</button>
+            <button  onclick="booking()">Book Return Ticket</button>
+            
+        </div>
+    </div>
+</body>
+<script>
+    function printPDF() {
+        window.print();
+    }
+    function home() {
+        window.location.href = '/home';
+    }
+    function booking() {
+        window.location.href = '/searchtrain';
+    }
+</script>
+</html>

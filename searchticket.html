@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Search Ticket</title>
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
+            padding: 10px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 96.7%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+		.header .logo {
+		   height: 35px;
+		   width: 160px;
+		   margin-left: 10px;
+		   
+		}
+        .erc .logo {
+            height: 35px;
+            width: 140px;
+            margin-top: 1px;
+            margin-left: 125px;
+
+        }
+
+        .erc {
+            margin-top: 2px;
+            display: flex;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://i.pinimg.com/1200x/b7/71/fc/b771fcf8cc1997ee4a9e64a6bc362132.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            justify-content: start;
+            align-items: center;
+            height: 120vh;
+            color: #333;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 70px;
+        }
+
+
+        .search-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            padding: 40px;
+            margin-bottom: 50px;
+            margin-top: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+			margin-top: 10px;
+			margin-bottom: 40px;
+            color: #333;
+        }
+
+        .nav a {
+            margin-right: 20px;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .search-container label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .search-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+            margin-bottom: 30px;
+        }
+
+        .search-container button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: #fff;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-container button:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+
+        .ticket-container {
+            width: 700px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-container h2 {
+            text-align: left;
+            color: #007bff;
+            font-size: 27px;
+            margin-top: 2px;
+            margin-bottom: 20px;
+            text-decoration: underline;
+        }
+
+        .ticket-container p {
+            text-align: left;
+            font-size: 16px;
+            color: rgb(59, 58, 58);
+        }
+
+        .ticket-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .ticket-details .left-column,
+        .ticket-details .right-column {
+            width: 40%;
+        }
+
+        .ticket-details p {
+            margin: 5px 0;
+            font-size: 15px;
+        }
+
+        .passenger-details {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .passenger-details h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #ffff;
+        }
+
+        .message {
+            color: #ffff;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            transform: scale(1.06);
+        }
+        
+        @media print {
+
+            .header,
+            .search-container {
+                display: none;
+            }
+
+            .ticket-container {
+                box-shadow: none;
+                border: none;
+            }
+
+            .buttons,
+            .table-container,
+            footer {
+                display: none;
+
+            }
+
+
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 20px;
+                width: 96.5%;
+            }
+
+            .header .logo {
+                height: 30px;
+            }
+
+            .nav a {
+                margin-right: 20px;
+                color: black;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 15px
+            }
+
+            .search-container {
+                width: 50%;
+                padding: 40px;
+            }
+
+            .ticket-container {
+                width: 90%;
+                padding: 20px;
+            }
+                        .ticket-container h2 {
+                font-size: 25px;
+            }
+
+            .erc .logo {
+                height: 30px;
+                width: 100px;
+                margin-top: 2px;
+                margin-left: 40px;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="https://assets.onecompiler.app/42zhuec4k/436qwru22/freepik--20250121145715BhEV.png" alt="Logo" class="logo">
+        <nav class="nav">
+			<a href="index.html">Home</a>
+			<a href="register.html">Register</a>
+			<a href="login.html">Login</a>
+			<a href="searchticket.html">PNR Status</a>
+			<a href="search.html">Ticket Booking</a>
+        </nav>
+    </header>
+    </header>
+
+    <main>
+        <!-- Ticket Booking Form -->
+        <div class="search-container">
+            <h1>Ticket Search</h1>
+            <form th:action="@{/searchticket}" th:object="${ticket}" method="post">
+                <label for="source_station">PNR Number</label>
+                <input type="text" id="source_station" name="source_station" th:field="*{pnr}"
+                    placeholder="Enter PNR number" required pattern="\d{9}" title="Enter a 10-digit PNR number" />
+
+                <button type="submit">Search Train</button>
+            </form>
+        </div>
+
+        <!-- Available Train List -->
+        <div th:if="${trainList != null && !trainList.isEmpty()}">
+            <div class="ticket-container">
+
+                <div th:each="ticket : ${trainList}">
+                    <div class="erc">
+                        <h2>Electronic Reservation Slip (ERS)</h2>
+                        <img src="https://assets.onecompiler.app/42zhuec4k/436qwru22/freepik--20250121145715BhEV.png"
+                            alt="Logo" class="logo">
+
+                    </div>
+                    <p>Please print the ERS and carry it along with a relevant photo ID while traveling.</p>
+
+                    <div class="ticket-details">
+                        <div class="left-column">
+                            <p><strong>Transaction ID:</strong> 2000001</p>
+                            <p><strong>From:</strong> <span th:text="${ticket.sourceStation}"></span></p>
+                            <p><strong>To:</strong> <span th:text="${ticket.destinationStation}"></span></p>
+                            <p><strong>Date of Booking:</strong> 2025-01-24</p>
+                            <p><strong>Date of Journey:</strong> <span th:text="${ticket.travelDate}"></p>
+                            <p><strong>Total Fare:</strong> Rs. 2000</p>
+                        </div>
+                        <div class="right-column">
+                            <p><strong>PNR No:</strong> <span th:text="${ticket.pnr}"></span></p>
+                            <p><strong>Train No.:</strong> <span th:text="${ticket.trainNo}"></span></p>
+                            <p><strong>Train Name:</strong> <span th:text="${ticket.trainName}"></span>
+                            </p>
+                            <p><strong>Class:</strong> <span th:text="${ticket.classes}"></span></p>
+                            <p><strong>Boarding At:</strong> <span th:text="${ticket.destinationStation}"></span></p>
+                            <p><strong>Quota:</strong> <span th:text="${ticket.quota}"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="passenger-details">
+                        <h3>Details of Passengers</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sl. No.</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Meal</th>
+                                    <th>Status</th>
+                                    <th>Coach</th>
+                                    <th>Seat / Berth</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><span th:text="${ticket.name}"></span></td>
+                                    <td><span th:text="${ticket.age}"></td>
+                                    <td><span th:text="${ticket.gender}"></td>
+                                    <td>Veg</td>
+                                    <td>CNF</td>
+                                    <td>B3</td>
+                                    <td>S<span th:text="${ticket.seat_no}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="buttons">
+                        <button onclick="home()">Back To Home </button>
+                        <button onclick="printPDF()">Print ERS (To PDF)</button>
+                        <button onclick="booking()">Book Return Ticket</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- No Train Found Message -->
+        <div class="message" th:if="${trainList == null || trainList.isEmpty()}">
+            <h2>No tickets found for the provided PNR.</h2>
+        </div>
+    </main>
+
+</body>
+
+<script>
+    function printPDF() {
+        window.print();
+    }
+    function home() {
+        window.location.href = 'home.html';
+    }
+    function booking() {
+        window.location.href = 'searchtrain.html';
+    }
+</script>
+
+</html>
